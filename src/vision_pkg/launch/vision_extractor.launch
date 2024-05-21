@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="vision_extractor"
+	      pkg="vision_pkg"
+	      type="vision_extractor.py"
+	      output="screen" />
+</launch>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="niryo_ned2">
+    <xacro:property name="yaml_file" value="$(find robot_pkg)/config/bakjes.yaml" />
+    <xacro:property name="bakjes" value="${load_yaml(yaml_file)}"/>
+
+    <xacro:macro name="box_macro" params="number" >
+        <xacro:property name="x" value="${bakjes['box'+str(number)]['x']}" />
+        <xacro:property name="y" value="${bakjes['box'+str(number)]['y']}" />
+        <xacro:property name="z" value="${bakjes['box'+str(number)]['z']}" />
+
+        <xacro:property name="rx" value="${bakjes['box'+str(number)]['rx']}" />
+        <xacro:property name="ry" value="${bakjes['box'+str(number)]['ry']}" />
+        <xacro:property name="rz" value="${bakjes['box'+str(number)]['rz']}" />
+
+         <link name="bakje_${number}">
+ 	        <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.01" />
+                <inertia ixx="0.00055187" ixy="0.0" ixz="0.0" iyy="0.00073447" iyz="0.0" izz="0.00049414"/>
+            </inertial>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robot_pkg/meshes/bakje.dae"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin rpy="0.0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robot_pkg/meshes/bakje.dae"/>
+                </geometry>
+            </visual>
+	    </link>
+
+        <gazebo reference="bakje_${number}">
+            <mu1>10.0</mu1>
+            <mu2>10.0</mu2>
+        </gazebo>
+
+        <joint name="bakje_${number}_joint" type="fixed">
+            <parent link="baseplate_link"/>
+            <child link="bakje_${number}"/>
+            <origin xyz="${x} ${y} ${z}" rpy="${pi*rx} ${pi*ry} ${pi*rz}"/>
+        </joint>
+
+    </xacro:macro>
+
+    <xacro:box_macro number="1" />
+    <xacro:box_macro number="2" />
+    <xacro:box_macro number="3" />
+    <xacro:box_macro number="4" />
+
+
+
+
+</robot>

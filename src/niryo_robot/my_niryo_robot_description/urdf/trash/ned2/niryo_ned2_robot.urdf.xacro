@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="niryo_ned2">
+  <!--
+    This is a convenience top-level xacro which loads the macro for the niryo nede
+    which defines the default values for the various "parameters files"
+    parameters for a niryo nede.
+
+    This file is only useful when loading a stand-alone, completely isolated
+    robot with only default values for all parameters such as the kinematics,
+    visual and physical parameters and joint limits.
+
+    This file is not intended to be integrated into a larger scene or other
+    composite xacro.
+
+
+
+    Refer to 'inc/ur_macro.xacro' for more information.
+  -->
+  <xacro:include filename="$(find robot_pkg)/urdf/ned2/niryo_ned2.transmission.xacro"/>
+  <xacro:include filename="$(find robot_pkg)/urdf/schot.urdf.xacro"/>
+  <xacro:include filename="$(find robot_pkg)/urdf/ned2/niryo_ned2.urdf.xacro"/>
+  <xacro:include filename="$(find robot_pkg)/urdf/camera.urdf.xacro"/>
+  <xacro:include filename="$(find robot_pkg)/urdf/Draaitafel.urdf.xacro"/>
+  <xacro:include filename="$(find robot_pkg)/urdf/bakje.urdf.xacro"/>
+
+  <xacro:niryo_ned2/>
+
+  <material name="LightGrey">
+      <color rgba="0.7 0.7 0.7 1.0" />
+  </material>
+
+  <material name="blue">
+      <color rgba="0 0 0.8 1" />
+  </material>
+
+  <material name="red">
+      <color rgba="0.8 0 0 1" />
+  </material>
+
+
+  <xacro:macro name="cylinder_inertia" params="m r h">
+        <inertia  ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0"
+                    iyy="${m*(3*r*r+h*h)/12}" iyz = "0"
+                    izz="${m*r*r/2}" />
+  </xacro:macro>
+
+  <xacro:macro name="box_inertia" params="m x y z">
+          <inertia  ixx="${m*(y*y+z*z)/12}" ixy = "0" ixz = "0"
+                    iyy="${m*(x*x+z*z)/12}" iyz = "0"
+                    izz="${m*(x*x+z*z)/12}" />
+  </xacro:macro>
+
+  <xacro:macro name="sphere_inertia" params="m r">
+          <inertia  ixx="${2*m*r*r/5}" ixy = "0" ixz = "0"
+                    iyy="${2*m*r*r/5}" iyz = "0"
+                    izz="${2*m*r*r/5}" />
+  </xacro:macro>
+
+
+  <link name="world" />
+
+  <link name="baseplate_link">
+    <visual>
+      <origin xyz="0 0 0.0" />
+      <geometry>
+        <box size="1.1 0.7 0.03" />
+      </geometry>
+      <material name="LightGrey"/>
+    </visual>
+    <inertial>
+      <mass value="10"/>
+      <xacro:box_inertia m="10" x="1.1" y="0.7" z="0.03"/>
+    </inertial>
+  </link>
+
+  <joint name="baseplate_joint" type="fixed">
+    <origin xyz="0.20 0 0" rpy="0.0 0.0 ${pi/2}"/>
+    <parent link="world" />
+    <child link="baseplate_link" />
+  </joint>
+world
+
+  <!-- robot to baseplate_joint. -->
+  <joint name="mountingplate_link" type="fixed">
+    <parent link="world" />
+    <child link="base_link" />
+    <origin xyz="0.0 0.0 0.021" rpy="0.0 0.0 0"/>
+  </joint>
+
+    <!-- Joint from tool_link to base_gripper -->
+
+
+  <xacro:include filename="$(find robot_pkg)/urdf/ned2/niryo_ned2_gripper1_n_camera.urdf.xacro"/>
+  <!-- <xacro:niryo_ned_gripper/> -->
+
+    <!-- <joint name="joint_to_gripper" type="fixed">
+        <parent link="tool_link"/>
+        <child link="base_gripper_1"/>
+        <origin
+                xyz="0 0 0.005"
+                rpy="0 ${pi/2} ${pi/2}"/>
+    </joint> -->
+
+
+  <!-- tool center point -->
+  <link name="tcp_link" />
+  <joint name="tool0_link" type="fixed">
+    <parent link="tool_link" />
+    <child link="tcp_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+</robot>

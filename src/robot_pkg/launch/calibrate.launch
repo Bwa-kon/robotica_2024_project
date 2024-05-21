@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node pkg="rosservice" type="rosservice" name="activate_learning_node" args="call  /niryo_robot/joints_interface/calibrate_motors 'value: 1'" />
+
+</launch>

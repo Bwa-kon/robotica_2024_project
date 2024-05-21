@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="niryo_ned2">
+
+
+    <link name="DraaitafelBase">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0"
+                    rpy="0 0 0"/>
+            <mass value="0.01"/>
+        <inertia
+                    ixx="0.00000147"
+                    ixy="0.0"
+                    ixz="0.0"
+                    iyy="0.00000282"
+                    iyz="0.0"
+                    izz="0.00000387"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_pkg/meshes/draaitafel_base.dae"/>
+            </geometry>
+              <material name="">
+                <color rgba="0.49804 0.49804 0.49804 1"/>
+              </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_pkg/meshes/draaitafel_base.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="draaitafel_blad">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0"
+                    rpy="0 0 0"/>
+            <mass value="0.01"/>
+        <inertia
+                    ixx="0.00000147"
+                    ixy="0.0"
+                    ixz="0.0"
+                    iyy="0.00000282"
+                    iyz="0.0"
+                    izz="0.00000387"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_pkg/meshes/blad.dae"/>
+            </geometry>
+              <material name="">
+                <color rgba="0.49804 0.49804 0.49804 1"/>
+              </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_pkg/meshes/blad.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+
+    <!-- 0.1869 -->
+    <!-- Joint from tool_link to base_gripper -->
+    <joint name="baseplate_to_draaitafel_base" type="fixed">
+        <parent link="baseplate_link"/>
+        <child link="DraaitafelBase"/>
+        <origin
+
+                xyz="0.335 0.200 0.2019"
+                rpy="0 0 0"/>
+    </joint>
+
+    <joint name="draaitafel_blad_joint" type="continuous">
+        <parent link="DraaitafelBase"/>
+        <child link="draaitafel_blad"/>
+        <axis xyz="0 0 1"/>
+        <origin
+                xyz="0 0 -0.0149"
+                rpy="0 0 0"/>
+        <limit effort="10.0" velocity="10.0"/>
+    </joint>
+
+
+    <!-- material -->
+    <gazebo reference="DraaitafelBase">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <gazebo reference="draaitafel_blad_link">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+
+</robot>

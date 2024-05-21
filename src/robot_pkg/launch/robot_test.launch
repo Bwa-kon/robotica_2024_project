@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <!-- <rosparam command="load" file="$(find robot_pkg)/config/bakjes.yaml"/> -->
+
+    <node name="gripper_test" pkg="robot_pkg" type="gripper_test.py" output="screen" />
+</launch>

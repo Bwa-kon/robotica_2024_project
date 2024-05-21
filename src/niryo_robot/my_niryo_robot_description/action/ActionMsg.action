@@ -1,0 +1,12 @@
+# goal coordiantes of object
+geometry_msgs/Pose object
+uint32 id
+
+---
+# result pick/place object
+int32 place
+bool placed
+
+---
+# feedback
+bool Busy

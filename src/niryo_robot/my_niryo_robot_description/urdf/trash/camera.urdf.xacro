@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="niryo_ned2">
+
+
+    <link name="camera_holder">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0"
+                    rpy="0 0 0"/>
+            <mass value="0.01"/>
+        <inertia
+                    ixx="0.00000147"
+                    ixy="0.0"
+                    ixz="0.0"
+                    iyy="0.00000282"
+                    iyz="0.0"
+                    izz="0.00000387"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_pkg/meshes/cameraHouder.dae"/>
+            </geometry>
+              <material name="">
+                <color rgba="0.49804 0.49804 0.49804 1"/>
+              </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_pkg/meshes/cameraHouder.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="camera">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0"
+                    rpy="0 0 0"/>
+            <mass value="0.01"/>
+        <inertia
+                    ixx="0.00000147"
+                    ixy="0.0"
+                    ixz="0.0"
+                    iyy="0.00000282"
+                    iyz="0.0"
+                    izz="0.00000387"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://depthai_descriptions/urdf/models/OAK-D.stl"/>
+            </geometry>
+              <material name="">
+                <color rgba="0.49804 0.49804 0.49804 1"/>
+              </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://depthai_descriptions/urdf/models/OAK-D.stl"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+
+    <!-- Joint from tool_link to base_gripper -->
+    <joint name="wrist_to_camera_holder" type="fixed">
+        <parent link="wrist_link"/>
+        <child link="camera_holder"/>
+        <origin
+                xyz="0 0.017 0"
+                rpy="${pi/2} ${-pi/2} 0"/>
+    </joint>
+
+
+    <joint name="holder_to_camera" type="fixed">
+        <parent link="camera_holder"/>
+        <child link="camera"/>
+        <origin
+                xyz="0 -0.0355 -0.025"
+                rpy="${pi/2} 0 0"/>
+    </joint>
+
+
+    <!-- material -->
+    <gazebo reference="camera_holder">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+
+</robot>

@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="niryo_ned">
+
+<!-- Base Gripper -->
+    <link name="base_gripper_1">
+        <inertial>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <mass value="0.01"/>
+            <inertia
+                    ixx="0.00862940"
+                    ixy="0.0"
+                    ixz="0.0"
+                    iyy="0.02072169"
+                    iyz="0.0"
+                    izz="0.02327580"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/gripper/gripper_base_v4.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/gripper/gripper_base_v4.stl"/>
+            </geometry>
+        </collision>
+    </link>
+
+
+<!-- Joint from tool_link to base_gripper -->
+    <joint name="joint_to_gripper" type="fixed">
+        <parent link="tool_link"/>
+        <child link="base_gripper_1"/>
+        <origin
+                xyz="-0.016 0 0" rpy="0 ${pi} -${pi/2}"/>
+    </joint>
+
+<!-- klep 1 -->
+    <link name="klep_1">
+        <inertial>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <mass value="0.01335241"/>
+            <inertia
+                    ixx="0.00000297"
+                    ixy="0.00000068"
+                    ixz="0.00000002"
+                    iyy="0.00000099"
+                    iyz="0.00000010"
+                    izz="0.00000282"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/gripper/gripper_left.dae"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.49804 0.49804 0.49804 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/gripper/grippe_left_colision.stl"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint_base_to_klep_1" type="prismatic">
+        <origin xyz="-0.0265 0.0425 -0.008" rpy="0 0 0"/>
+        <parent link="base_gripper_1"/>
+        <child link="klep_1"/>
+         <axis xyz="1 0 0"/>
+        <limit lower="0"
+               upper="0.01"
+               effort="1"
+               velocity="5"/>
+    </joint>
+
+
+<!-- klep 2 -->
+    <link name="klep_2">
+        <inertial>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <mass value="0.01335241"/>
+            <inertia
+                    ixx="0.00000297"
+                    ixy="0.00000068"
+                    ixz="0.00000002"
+                    iyy="0.00000099"
+                    iyz="0.00000010"
+                    izz="0.00000282"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/gripper/gripper_right.dae"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.49804 0.49804 0.49804 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/gripper/grippe_right_colision.stl"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint_base_to_klep_2" type="prismatic">
+        <origin xyz="0.0255 0.044 -0.008" rpy="0 0 0"/>
+        <parent link="base_gripper_1"/>
+        <child link="klep_2"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-0.01"
+               upper="0"
+               effort="1"
+               velocity="5"/>
+    </joint>
+
+
+
+
+        <!-- material -->
+    <!-- <gazebo reference="base_gripper_1">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo> -->
+
+    <!-- <gazebo reference="mors_1">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo> -->
+
+    <!-- <gazebo reference="mors_2">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo> -->
+
+
+</robot>

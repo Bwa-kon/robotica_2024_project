@@ -1,0 +1,5 @@
+schotv2:
+  model: schot
+  model_type: urdf
+  position: [X,Y,Z]
+  orientation: [0, 0, 0]

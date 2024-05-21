@@ -1,0 +1,12 @@
+uint32 id
+string label
+float32 confidence
+geometry_msgs/Pose pose
+int32 xmin
+int32 ymin
+int32 xmax
+int32 ymax
+int32 width
+int32 height
+float32 radians
+float32 angle

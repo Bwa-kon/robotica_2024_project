@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="pick_and_place"
+	      pkg="robot_pkg"
+	      type="pick_and_place.py"
+	      output="screen" />
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_pkg)/config/rviz.rviz"/>
+</launch>

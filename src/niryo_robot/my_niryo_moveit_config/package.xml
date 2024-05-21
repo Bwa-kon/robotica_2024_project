@@ -1,0 +1,23 @@
+<package>
+
+  <name>my_niryo_moveit_config</name>
+  <version>0.3.0</version>
+  <description>
+     An automatically generated package with all the configuration and launch files for using Ned with the MoveIt! Motion Planning Framework
+  </description>
+  <author email="r.lux@niryo.com">Rémi lux</author>
+  <maintainer email="r.lux@niryo.com">Rémi lux</maintainer>
+  <maintainer email="v.pitre@niryo.com">Valentin Pitre</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://moveit.ros.org/</url>
+  <url type="bugtracker">https://github.com/ros-planning/moveit/issues</url>
+  <url type="repository">https://github.com/ros-planning/moveit</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>my_niryo_robot_description</build_depend>
+  <run_depend>my_niryo_robot_description</run_depend>
+
+</package>

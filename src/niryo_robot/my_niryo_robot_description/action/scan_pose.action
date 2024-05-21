@@ -1,0 +1,10 @@
+#Goal
+int32 some_goal_param
+
+---
+# result pick/place object
+bool Ready
+
+---
+#feedback
+string Busy

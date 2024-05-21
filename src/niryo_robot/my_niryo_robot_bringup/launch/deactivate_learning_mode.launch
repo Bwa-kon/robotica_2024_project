@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+ 
+  <node pkg="rosservice" type="rosservice" name="activate_learning_node" args="call  /niryo_robot/learning_mode/activate 'value: false'" />
+
+</launch>
+

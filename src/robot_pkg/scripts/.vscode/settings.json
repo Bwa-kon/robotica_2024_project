@@ -1,0 +1,14 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/student/niryo_robot_ws/devel/lib/python2.7/dist-packages",
+        "/home/student/rospackages_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages",
+        "/home/student/niryo_robot_ws/devel/.private/niryo_robot_python_ros_wrapper/lib/python2.7/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/student/niryo_robot_ws/devel/lib/python2.7/dist-packages",
+        "/home/student/rospackages_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages",
+        "/home/student/niryo_robot_ws/devel/.private/niryo_robot_python_ros_wrapper/lib/python2.7/dist-packages"
+    ]
+}

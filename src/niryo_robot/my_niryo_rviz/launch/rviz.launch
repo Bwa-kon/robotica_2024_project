@@ -1,0 +1,10 @@
+<!-- Launches rvze-->
+
+<launch>
+
+
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_niryo_rviz)/config/config.rviz"/>
+
+
+</launch>
+

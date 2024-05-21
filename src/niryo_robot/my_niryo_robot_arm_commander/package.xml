@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-model
+  href="http://download.ros.org/schema/package_format3.xsd"
+  schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>my_niryo_robot_arm_commander</name>
+  <version>4.1.0</version>
+  <description>
+      Interface between user and Moveit! to easily control Ned (arm + tools). Validates params, checks if
+      previous trajectory has not finished, ...
+  </description>
+  <maintainer email="r.lux@niryo.com">Rémi Lux</maintainer>
+  <maintainer email="v.pitre@niryo.com">Valentin Pitre</maintainer>
+  <license>GPLv3</license>
+  <author email="r.lux@niryo.com">Rémi Lux</author>
+
+</package>

@@ -1,0 +1,7 @@
+#goal
+---
+#result
+std_msgs/Bool AtScanPosition
+---
+#feedback
+std_msgs/String Status

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <include file="$(find robot_pkg)/launch/spawn_xacro.launch">
+        <arg name="x" value="0.0" />
+        <arg name="y" value="0.0" />
+        <arg name="z" value="0.2" />
+        <arg name="xacro_file_path" value="$(find robot_pkg)/urdf/ned2/niryo_ned2_robot.urdf.xacro" />
+        <arg name="robot_name" value="niryo" />
+    </include>
+</launch>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+	<include file="$(find vision_pkg)/launch/camera_publisher.launch"/>
+	<include file="$(find vision_pkg)/launch/vision_extractor.launch"/>
+</launch>

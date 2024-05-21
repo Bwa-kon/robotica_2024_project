@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="niryo_ned">
+
+    <link name="schot">
+ 	    <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.01" />
+            <inertia ixx="7.58333333333e-05" ixy="0.0" ixz="0.0" iyy="0.00015000000000000001" iyz="0.0" izz="7.50208333333"/>
+        </inertial>
+        <collision>
+            <origin xyz="0 0.05 0.15" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.3 0.05 0.4"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/schot/schotv2.dae"/>
+            </geometry>
+        </visual>
+	</link>
+
+    <gazebo reference="schot">
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+    </gazebo>
+
+    <joint name="fixed" type="fixed">
+        <parent link="baseplate_link"/>
+        <child link="schot"/>
+        <origin xyz="0.15 -0.14 0.015" rpy="0 0 ${pi/2}"/>
+    </joint>
+
+</robot>

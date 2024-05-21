@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="robot_main"
+	      pkg="main_pkg"
+	      type="main.py"
+	      required="true"
+	      output="screen" />
+
+	<include file="$(find vision_pkg)/launch/camera_publisher.launch"/>
+
+	<include file="$(find regelaar_pkg)/launch/serial.launch">
+		<arg name="port" value="/dev/ttyACM0"/>
+	</include>
+
+	<include file="$(find hmi)/launch/serial.launch">
+		<arg name="port" value="/dev/ttyACM1"/>
+	</include>
+</launch>

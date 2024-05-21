@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <arg name="sim" default="false"/>
+
+  <!-- startup ros_control for real robot -->
+  <group unless="$(arg sim)">
+    <include file="$(find my_niryo_robot_bringup)/launch/moveit_multimachines.launch"/>
+    <include file="$(find my_niryo_rviz)/launch/rviz.launch"/>
+  </group>
+
+  <!-- startup simulated (rviz)world and spawn robot-->
+  <group if="$(arg sim)">
+    <include file="$(find my_niryo_ned_moveit_config)/launch/demo.launch"/>
+  </group>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="test_broadcaster" args="0.20 0.15 0.15 0 0 0 1 world ik_testpoint" />
+
+</launch>

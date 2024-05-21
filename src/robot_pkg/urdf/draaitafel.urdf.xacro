@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="niryo_ned">
+
+<!-- Base draaitafel -->
+<link name="base_draaitafel">
+    <inertial>
+        <origin xyz="0 0 0"
+                rpy="0 0 0"/>
+        <mass value="0.01"/>
+        <inertia
+                ixx="0.00862940"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.02072169"
+                iyz="0.0"
+                izz="0.02327580"/>
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0"
+                rpy="0 0 0"/>
+        <geometry>
+            <mesh filename="package://my_niryo_robot_description/meshes/draaitafel/rotatev5.dae"/>
+        </geometry>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0"
+                rpy="0 0 0"/>
+        <geometry>
+            <mesh filename="package://my_niryo_robot_description/meshes/draaitafel/rotatev5.stl"/>
+        </geometry>
+    </collision>
+</link>
+
+
+<!-- joint from baseplate to base_draaitafel -->
+<joint name="baseplate_draaitafel_joint" type="fixed">
+    <parent link="baseplate_link" />
+    <child link="base_draaitafel" />
+    <origin xyz="0.26 0.15 0.265" rpy="0.0 0.0 ${pi/2}"/>
+</joint>
+
+
+<!-- link draaitafel plaat -->
+<link name="draaitafel_plaat">
+        <inertial>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <mass value="0.01"/>
+            <inertia
+                    ixx="0.00862940"
+                    ixy="0.0"
+                    ixz="0.0"
+                    iyy="0.02072169"
+                    iyz="0.0"
+                    izz="0.02327580"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/draaitafel/plaatv2.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"
+                    rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_niryo_robot_description/meshes/draaitafel/coll_plaatv2.stl"/>
+            </geometry>
+        </collision>
+</link>
+
+
+<!-- joint from base_draaitafel to draaitafel_plaat -->
+<joint name="draaitafel_to_plaat_joint" type="fixed">
+    <parent link="base_draaitafel" />
+    <child link="draaitafel_plaat" />
+    <origin xyz="0.0 0.0 -0.0165" rpy="0.0 0.0 0.0"/>
+    <!-- <limit lower="-0.5" upper="0.5" effort="0.1" velocity="0.005"/>
+    <axis xyz="0 0 1"/> -->
+</joint>
+
+</robot>

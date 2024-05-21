@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="camera_publisher"
+	      pkg="vision_pkg"
+	      type="camera_publisher.py"
+	      cwd="node"
+	      respawn="true"
+	      respawn_delay="5"
+	      output="screen" />
+</launch>

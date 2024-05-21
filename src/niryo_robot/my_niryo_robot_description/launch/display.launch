@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="hardware_version" default="ned"/>
+    <arg name="joints_gui" default="true"/>
+
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find my_niryo_robot_description)/urdf/$(arg hardware_version)/niryo_$(arg hardware_version)_robot.urdf.xacro"/>
+
+    <param name="use_gui" value="$(arg joints_gui)"/>
+
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_niryo_robot_description)/config/default_config.rviz"/>
+</launch>
